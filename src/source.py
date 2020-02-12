@@ -32,7 +32,7 @@ for _ in range(1000000):
     SYNAPSES_WEIGHTS += adjustment  # корректировка весов
 
 # запись весов в файл, для далнейшего их использования
-FILE = open("weights.txt", "w")
+FILE = open(r"D:\PredictionNumber\weights.txt", "w")
 for weight in SYNAPSES_WEIGHTS:
     FILE.write(str(*weight) + "\n")
 FILE.close()
