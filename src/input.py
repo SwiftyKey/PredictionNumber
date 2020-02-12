@@ -18,14 +18,14 @@ def calculation(event):
 
 
 # считываем веса нейросети
-FILE = open(r"weights.txt", "r")
+FILE = open("weights.txt", "r")
 WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
 FILE.close()
 
 # GUI
-MASTER = Tk("SolveSequence")
+MASTER = Tk()
 ENTRY = Entry(MASTER, font=("Comic Sans MS", 36, "bold"), width=7)
 ENTER = Button(MASTER, text="Enter", fg="black", font=("Comic Sans MS", 24, "bold"))
 LABEL = Label(MASTER, font=("Comic Sans MS", 36, "bold"), width=12)
