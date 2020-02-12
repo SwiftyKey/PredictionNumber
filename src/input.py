@@ -17,7 +17,7 @@ def calculation(event):
 
 
 # считываем веса нейросети
-FILE = open(r"D:\SolveSequence\weights.txt", "r")
+FILE = open(r"weights.txt", "r")
 WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
