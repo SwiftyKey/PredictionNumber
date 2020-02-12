@@ -4,10 +4,11 @@ from numpy import array, dot, exp
 
 # ввод битового вектора и вывод результата
 def calculation(event):
+    global ENTRY, LABEL, WEIGHTS
+    
     def sigmoid(arg):
         return 1 / (1 + exp(-arg))
 
-    global ENTRY, LABEL, WEIGHTS
     try:
         inputs = array([int(i) for i in ENTRY.get()])
         output = sigmoid(dot(inputs, WEIGHTS))
