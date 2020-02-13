@@ -23,7 +23,7 @@ def sigmoid(arg):
     return 1 / (1 + exp(-arg))
 
 
-# обучение при помощи обратного распространения ошибки
+# обучение нейросети
 for _ in range(1000000):
     input_layer = DATA_TRAIN_INPUTS
     OUTPUTS = sigmoid(dot(input_layer, SYNAPSES_WEIGHTS))
