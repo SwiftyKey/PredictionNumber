@@ -18,20 +18,20 @@ SYNAPSES_WEIGHTS = 2 * random.random((6, 1)) - 1
 OUTPUTS = [[]]
 
 
-# функция активации
+# activation function
 def sigmoid(arg):
     return 1 / (1 + exp(-arg))
 
 
-# обучение нейросети
+# neural network training
 for _ in range(1000000):
     input_layer = DATA_TRAIN_INPUTS
     OUTPUTS = sigmoid(dot(input_layer, SYNAPSES_WEIGHTS))
-    error = DATA_TRAIN_OUTPUTS - OUTPUTS
-    adjustment = dot(input_layer.T, error * (OUTPUTS * (1 - OUTPUTS)))
-    SYNAPSES_WEIGHTS += adjustment  # корректировка весов
+    # weight adjustment
+    SYNAPSES_WEIGHTS += dot(input_layer.T,
+                            (DATA_TRAIN_OUTPUTS - OUTPUTS) * (OUTPUTS * (1 - OUTPUTS)))
 
-# запись весов в файл, для далнейшего их использования
+# writing weights to a file for further use
 FILE = open(r"D:\PredictionNumber\weights.txt", "w")
 for weight in SYNAPSES_WEIGHTS:
     FILE.write(str(*weight) + "\n")
