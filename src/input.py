@@ -2,7 +2,7 @@ from tkinter import Entry, Tk, Label
 from numpy import array, dot, exp
 
 
-# ввод битового вектора и вывод результата
+# input bit vector and output result
 def calculation(event):
     global ENTRY, LABEL, WEIGHTS
 
@@ -12,19 +12,39 @@ def calculation(event):
     def contentIsCorrect():
         return all(map(lambda sym: sym in "01", content))
 
+    def transfer():
+        bin_content = list(bin(int(content)))[2:]
+        return array([0] * (6 - len(bin_content)) + list(map(lambda el: int(el), bin_content)))
+
     content = ENTRY.get()
 
-    if contentIsCorrect() and len(content) == 6:
-        inputs = array([int(i) for i in content])
-        output = sigmoid(dot(inputs, WEIGHTS))
-        LABEL['text'] = "Result: " + str(int(*output[0].round()))
-    if contentIsCorrect() and len(content) != 6:
-        LABEL['text'] = "Length error"
-    if not contentIsCorrect():
-        LABEL['text'] = "Letter in input"
+    try:
+        # content is a 6-bit vector
+        if contentIsCorrect() and len(content) == 6:
+            inputs = array(list(map(lambda el: int(el), content)))
+            output = sigmoid(dot(inputs, WEIGHTS))
+            LABEL['text'] = "Result: " + str(int(*output[0].round()))
+        # content is a usual number in [0; 63]
+        elif 0 <= int(content) <= 63:
+            inputs = transfer()
+            output = sigmoid(dot(inputs, WEIGHTS))
+            LABEL['text'] = "Result: " + str(int(*output[0].round()))
+        # content is a bit vector, but length < 6
+        elif contentIsCorrect() and len(content) != 6:
+            LABEL['text'] = "Length error"
+        # content is a number, but more than 63
+        elif not contentIsCorrect():
+            LABEL['text'] = "Number >= 63"
+    except ValueError:
+        # user entered nothing
+        if not content:
+            LABEL['text'] = ""
+        # letter in content
+        else:
+            LABEL['text'] = "Letter in input"
 
 
-# считываем веса нейросети
+# reading the weight of the neural network
 FILE = open(r"D:\PredictionNumber\weights.txt", "r")
 WEIGHTS = [[]]
 for line in FILE:
