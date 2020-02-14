@@ -53,8 +53,8 @@ FILE.close()
 
 # GUI
 MASTER = Tk()
-ENTRY = Entry(MASTER, font=("Calibri", 36, "bold"), width=7)
-LABEL = Label(MASTER, font=("Calibri", 36, "bold"), width=12)
+ENTRY = Entry(MASTER, font=("Bookman Old Style", 36, "bold"), width=7)
+LABEL = Label(MASTER, font=("Bookman Old Style", 36, "bold"), width=12)
 
 ENTRY.grid(row=0, columnspan=2)
 LABEL.grid(row=1, columnspan=2)
