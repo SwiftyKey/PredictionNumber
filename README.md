@@ -8,5 +8,5 @@
 
 *Neural network model:* Perceptron  
 *Learning model:*       Learning by examples  
-*Training method:*      Back propagation of an error 
+*Training method:*      Back propagation of an error  
 *Input format:*         6-bit vector  
