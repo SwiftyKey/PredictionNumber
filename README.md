@@ -9,4 +9,4 @@
 *Neural network model:* Perceptron  
 *Learning model:*       Learning by examples  
 *Training method:*      Back propagation of an error  
-*Input format:*         6-bit vector  
+*Input format:*         6-bit vector or number in the range [0;63]  
