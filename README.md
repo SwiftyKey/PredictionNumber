@@ -1,12 +1,12 @@
-*Автор проекта:* ***Чернов степан***
+*Project author:* ***Chernov Stepan***
 
-*Описание модулей:*
-- Для обучения используйте файл source.py
-- Сама программа — input.py
-- Для проверки того, что нейросеть корректно функционирует — test.py
-- В файле weights.txt вы найдете веса нейросети
+*Description of modules:*
+- For training, use the source.py file
+- The program itself - input.py
+- To verify that the neural network is functioning correctly - test.py
+- In the weights.txt file you will find the weights of the neural network
 
-*Модель нейросети:* Перцептрон  
-*Модель обучения:*  Обучение на примерах  
-*Способ обучения:*  Обратное распространение ошибки  
-*Формат ввода:*		  6-битный вектор  
+*Neural network model:* Perceptron  
+*Learning model:*       Learning by examples  
+*Training method:*      Back propagation of an error 
+*Input format:*         6-bit vector  
