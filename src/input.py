@@ -9,7 +9,7 @@ def calculation(event):
     def sigmoid(arg):
         return 1 / (1 + exp(-arg))
 
-    def contentIsCorrect():
+    def binContentIsCorrect():
         return all(map(lambda sym: sym in "01", content))
 
     def transfer():
@@ -20,7 +20,7 @@ def calculation(event):
 
     try:
         # content is a 6-bit vector
-        if contentIsCorrect() and len(content) == 6:
+        if binContentIsCorrect() and len(content) == 6:
             inputs = array(list(map(lambda el: int(el), content)))
             output = sigmoid(dot(inputs, WEIGHTS))
             LABEL['text'] = "Result: " + str(int(*output[0].round()))
@@ -30,10 +30,10 @@ def calculation(event):
             output = sigmoid(dot(inputs, WEIGHTS))
             LABEL['text'] = "Result: " + str(int(*output[0].round()))
         # content is a bit vector, but length < 6
-        elif contentIsCorrect() and len(content) != 6:
+        elif binContentIsCorrect() and len(content) != 6:
             LABEL['text'] = "Length error"
         # content is a number, but more than 63
-        elif not contentIsCorrect():
+        elif not binContentIsCorrect():
             LABEL['text'] = "Number >= 63"
     except ValueError:
         # user entered nothing
