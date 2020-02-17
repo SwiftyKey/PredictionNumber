@@ -7,6 +7,6 @@
 - In the weights.txt file you will find the weights of the neural network
 
 *Neural network model:* Perceptron  
-*Learning model:*       Learning by examples  
+*Learning model:*       Teacher training  
 *Training method:*      Back propagation of an error  
 *Input format:*         6-bit vector or number in the range [0;63]  
