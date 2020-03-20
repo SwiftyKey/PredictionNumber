@@ -1,6 +1,7 @@
 from numpy import array, dot, exp
 
 
+
 def sigmoid(arg):
     return 1 / (1 + exp(-arg))
 
@@ -20,16 +21,17 @@ FILE = open(r"D:\PredictionNumber\weights.txt", "r")
 WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
+SIZE = len(WEIGHTS[0])
 
 DATA_INPUTS = []
-binGEN(6)
+binGEN(SIZE)
 OUTPUTS = []
 for i in DATA_INPUTS:
     output = sigmoid(dot(i, WEIGHTS))
     OUTPUTS.append(int(*output[0].round()))
 
 # testing
-for i in range(64):
+for i in range(SIZE):
     if DATA_INPUTS[i][0] != OUTPUTS[i]:
         print("ERROR in", i)
 else:
