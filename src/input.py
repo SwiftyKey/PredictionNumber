@@ -37,7 +37,7 @@ def calculation(event):
             LABEL['text'] = "Length error"
         # content is a number, but more than 63
         elif not binContentIsCorrect():
-            LABEL['text'] = f"Number >= {max_value}"
+            LABEL['text'] = f"Number > {max_value}"
     except ValueError:
         # user entered nothing
         if not content:
@@ -48,7 +48,7 @@ def calculation(event):
 
 
 # reading the weight of the neural network
-FILE = open(r"D:\PredictionNumber\weights.txt", "r")
+FILE = open(r"\PredictionNumber\weights.txt", "r")
 WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])

@@ -28,7 +28,7 @@ for _ in range(1000000):
                             (DATA_TRAIN_OUTPUTS - OUTPUTS) * (OUTPUTS * (1 - OUTPUTS)))
 
 # writing weights to a file for further use
-FILE = open(r"D:\PredictionNumber\weights.txt", "w")
+FILE = open(r"\PredictionNumber\weights.txt", "w")
 for weight in SYNAPSES_WEIGHTS:
     FILE.write(str(*weight) + "\n")
 FILE.close()
