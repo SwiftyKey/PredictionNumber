@@ -51,6 +51,8 @@ MAX_VALUE = 2 ** SIZE - 1
 
 # GUI
 MASTER = Tk()
+MASTER.title('')
+MASTER.resizable(False, False)
 ENTRY = Entry(MASTER, font=("Bookman Old Style", 36, "bold"), width=8)
 LABEL = Label(MASTER, font=("Bookman Old Style", 36, "bold"), width=12)
 
