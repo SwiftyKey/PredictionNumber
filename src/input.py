@@ -2,12 +2,11 @@ from tkinter import Entry, Tk, Label
 from numpy import array, dot, exp
 
 
-# input bit vector and output result
+# input and output result
 def calculation(event):
-    global ENTRY, LABEL, WEIGHTS
+    global ENTRY, LABEL, WEIGHTS, SIZE, MAX_VALUE
 
-    size = len(WEIGHTS[0])
-    max_value = 2 ** size - 1
+    content = ENTRY.get()
 
     def sigmoid(arg):
         return 1 / (1 + exp(-arg))
@@ -16,28 +15,22 @@ def calculation(event):
         return all(map(lambda sym: sym in "01", content))
 
     def transfer():
-        bin_content = list(bin(int(content)))[2:]
-        return array([0] * (size - len(bin_content)) + list(map(lambda el: int(el), bin_content)))
+        bin_content = list(bin(int(content)))[2:] if not binContentIsCorrect() else content
+        return array([0] * (SIZE - len(bin_content)) + list(map(int, bin_content)))
 
-    content = ENTRY.get()
+    def output(inputs):
+        LABEL['text'] = "Result: " + str(int(*sigmoid(dot(inputs, WEIGHTS))[0].round()))
 
     try:
-        # content is a 6-bit vector
-        if binContentIsCorrect() and len(content) == size:
-            inputs = array(list(map(lambda el: int(el), content)))
-            output = sigmoid(dot(inputs, WEIGHTS))
-            LABEL['text'] = "Result: " + str(int(*output[0].round()))
-        # content is a usual number in [0; 63]
-        elif 0 <= int(content) <= max_value:
-            inputs = transfer()
-            output = sigmoid(dot(inputs, WEIGHTS))
-            LABEL['text'] = "Result: " + str(int(*output[0].round()))
-        # content is a bit vector, but length < 6
-        elif binContentIsCorrect() and len(content) != size:
+        # content is a size-bit vector or is a usual number in [0; max_value]
+        if binContentIsCorrect() and 0 < len(content) <= SIZE or 0 <= int(content) <= MAX_VALUE:
+            output(transfer())
+        # content is a bit vector, but length < size
+        elif binContentIsCorrect() and len(content) > SIZE:
             LABEL['text'] = "Length error"
-        # content is a number, but more than 63
+        # content is a number, but more than max_value
         elif not binContentIsCorrect():
-            LABEL['text'] = f"Number > {max_value}"
+            LABEL['text'] = f"Number > {MAX_VALUE}"
     except ValueError:
         # user entered nothing
         if not content:
@@ -53,6 +46,8 @@ WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
 FILE.close()
+SIZE = len(WEIGHTS[0])
+MAX_VALUE = 2 ** SIZE - 1
 
 # GUI
 MASTER = Tk()
