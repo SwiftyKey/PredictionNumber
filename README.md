@@ -9,4 +9,4 @@
 *Neural network model:* Perceptron  
 *Learning model:*       Teacher training  
 *Training method:*      Back propagation of an error  
-*Input format:*         6-bit vector or number in the range [0;63]  
+*Input format:*         8-bit vector or number in the range [0;255]  
