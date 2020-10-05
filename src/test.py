@@ -16,7 +16,7 @@ def binGEN(n, s=''):
     binGEN(n - 1, s + '1')
 
 
-FILE = open(r"\PredictionNumber\weights.txt", "r")
+FILE = open("D:/Projects/PredictionNumber/weights.txt")
 WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
