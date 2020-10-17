@@ -21,6 +21,7 @@ WEIGHTS = [[]]
 for line in FILE:
     WEIGHTS[0].append([float(line[:-2])])
 SIZE = len(WEIGHTS[0])
+FILE.close()
 
 DATA_INPUTS = []
 binGEN(SIZE)
