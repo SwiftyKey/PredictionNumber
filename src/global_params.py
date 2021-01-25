@@ -1,9 +1,9 @@
-from numpy import array, dot, random, exp
 import os
+from numpy import exp, array, random, dot
 
 os.chdir('..')
 SIZE = 8
-WEIGHTS_PATH = "weights.txt"
+WEIGHTS_PATH = os.getcwd() + r"\weights.txt"
 
 
 # activation function
