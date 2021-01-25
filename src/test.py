@@ -1,8 +1,4 @@
-from numpy import array, dot, exp
-
-
-def sigmoid(arg):
-    return 1 / (1 + exp(-arg))
+from global_params import *
 
 
 def binGEN(n, s=''):
@@ -16,19 +12,14 @@ def binGEN(n, s=''):
     binGEN(n - 1, s + '1')
 
 
-FILE = open("D:/Projects/PredictionNumber/weights.txt")
-WEIGHTS = [[]]
-for line in FILE:
-    WEIGHTS[0].append([float(line[:-2])])
-SIZE = len(WEIGHTS[0])
-FILE.close()
+# reading weights
+WEIGHTS = read_weights()
 
 DATA_INPUTS = []
 binGEN(SIZE)
 OUTPUTS = []
 for i in DATA_INPUTS:
-    output = sigmoid(dot(i, WEIGHTS))
-    OUTPUTS.append(int(*output[0].round()))
+    OUTPUTS.append(int(*sigmoid(dot(i, WEIGHTS))[0].round()))
 
 # testing
 for i in range(2 ** SIZE):
